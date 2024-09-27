@@ -7,7 +7,7 @@ Description: |
     then deployed on Apache Web Server.
   
 Parameters:
-  Keypair:
+  KeyPair:
     Description: Select your keypair 
     Type: AWS::EC2::KeyPair::KeyName
     Default: first-key
@@ -33,7 +33,7 @@ Resources:
           - FromPort: 22
             IpProtocol: tcp
             ToPort: 22
-            CidrIp: 0.0.0.0/0
+            CidrIp: 0.0.0.0/0  
           - IpProtocol: tcp 
             FromPort: 80
             ToPort: 80
@@ -44,7 +44,7 @@ Resources:
     Properties:
          ImageId: !Ref LatestAmiId
          InstanceType: !Ref InstanceType
-         KeyName: !Ref Keypair
+         KeyName: !Ref KeyPair
          SecurityGroupIds:
               - !Ref MySecGroup
          Tags:
@@ -53,16 +53,17 @@ Resources:
          UserData: 
             Fn::Base64: !Sub |
               #!/bin/bash
-              yum update -y
-              yum install -y httpd wget
+              dnf update -y
+              dnf install -y httpd wget
 
               FOLDER="https://raw.githubusercontent.com/ozayilmz/aws-projects/main/101-kittens-carousel-static-website-ec2/static-web"
               cd /var/www/html
-              wget $FOLDER/index.html
-              wget $FOLDER/cat0.jpg
-              wget $FOLDER/cat1.jpg
-              wget $FOLDER/cat2.jpg
-              wget $FOLDER/cat3.png
+
+              wget $FOLDER/index.html 
+              wget $FOLDER/cat0.jpg 
+              wget $FOLDER/cat1.jpg 
+              wget $FOLDER/cat2.jpg 
+              wget $FOLDER/cat3.png 
 
               systemctl start httpd
               systemctl enable httpd
@@ -72,4 +73,4 @@ Resources:
 Outputs:
   WebSiteURL:
     Description: "Kittens Carousel Static Website URL"
-    Value: !Sub "http://${WebServerKittens.PublicDnsName}"
+    Value: !Sub "http://${WebServerKittens.PublicDnsName}"  
