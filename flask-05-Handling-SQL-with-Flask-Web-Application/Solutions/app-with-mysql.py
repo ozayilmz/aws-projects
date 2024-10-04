@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['MYSQL_DATABASE_HOST'] = 'rhamnousia.cp6osuamu9c6.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_DATABASE_USER'] = 'admin'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'Babuke1453.'
-app.config['MYSQL_DATABASE_DB'] = 'clarusway'
+app.config['MYSQL_DATABASE_DB'] = 'rednecks'
 app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql = MySQL()
 mysql.init_app(app)
@@ -30,7 +30,7 @@ CREATE TABLE users (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 """
 data = """
-INSERT INTO clarusway.users 
+INSERT INTO rednecks.users 
 VALUES 
     ("dora", "dora@amazon.com"),
     ("cansın", "cansın@google.com"),
